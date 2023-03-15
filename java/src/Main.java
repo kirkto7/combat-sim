@@ -1,5 +1,11 @@
+import java.io.File;
+
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        FileManager test = FileManager.getInstance();
+        test.importFile("rook.json");
     }
+
 }
+
