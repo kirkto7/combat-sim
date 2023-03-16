@@ -1,5 +1,6 @@
 import com.google.gson.*;
 import java.util.Map;
+import java.util.Set;
 
 public class FileParser {
 
@@ -18,7 +19,7 @@ public class FileParser {
         return instance;
     }
 
-    public int getID(String json) {
+    public int getID(String json) throws IllegalArgumentException, NullPointerException {
         JsonObject data = JsonParser.parseString(json).getAsJsonObject().get("data").getAsJsonObject();
         return data.get("id").getAsInt();
     }
