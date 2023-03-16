@@ -19,7 +19,8 @@ public class FileParser {
     }
 
     public int getID(String json) {
-        return -1;
+        JsonObject data = JsonParser.parseString(json).getAsJsonObject().get("data").getAsJsonObject();
+        return data.get("id").getAsInt();
     }
 
 }
