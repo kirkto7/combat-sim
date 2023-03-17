@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-
 public class Main {
     public static void main(String[] args) {
         FileManager test = FileManager.getInstance();
@@ -33,7 +32,11 @@ public class Main {
             }
         } while (!isValidFile);
 
+        int[] scores = parse.getAbilityScores(data);
 
+        for (int i = 0; i < scores.length; i++) {
+            System.out.println(scores[i]);
+        };
     }
 
 }
