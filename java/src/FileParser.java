@@ -24,4 +24,25 @@ public class FileParser {
         return data.get("id").getAsInt();
     }
 
+    private JsonObject getData(String json) {
+        return JsonParser.parseString(json).getAsJsonObject().get("data").getAsJsonObject();
+    }
+
+    public int[] getAbilityScores(String json) {
+        int[] scores = new int[6];
+        //Get base ability scores first
+        JsonArray stats = getData(json).get("stats").getAsJsonArray();
+        JsonArray bonusStats = getData(json).get("bonusStats").getAsJsonArray();;
+        JsonArray overrides = getData(json).get("overrideStats").getAsJsonArray();
+        for(int i = 0; i < scores.length; i++) {
+            int rawStat = stats.get(i).getAsJsonObject().get("value").getAsInt();
+            int bonusStat = bonusStats.get(i).getAsJsonObject().get("value").isJsonNull() ? 0 : bonusStats.get(i).getAsJsonObject().get("value").getAsInt();
+            int override = overrides.get(i).getAsJsonObject().get("value").isJsonNull() ? 0 : overrides.get(i).getAsJsonObject().get("value").getAsInt();
+            scores[i] = (override > 0) ? override : rawStat + bonusStat;
+        }
+
+        //Add modifiers to scores
+
+        return scores;
+    }
 }
