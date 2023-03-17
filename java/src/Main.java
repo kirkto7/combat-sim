@@ -3,8 +3,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        FileManager test = FileManager.getInstance();
-        FileParser parse = FileParser.getInstance();
+        FileManager fileManager = FileManager.getInstance();
 
         Scanner in = new Scanner(System.in);
         System.out.println("Enter Filename: ");
@@ -19,7 +18,7 @@ public class Main {
                 return;
             }
             try {
-                data = test.importCharacter(fileName);
+                data = fileManager.importCharacter(fileName);
                 isValidFile = true;
             } catch (FileNotFoundException e) {
                 System.out.println("File not found");
@@ -31,12 +30,6 @@ public class Main {
                 System.out.println("Enter new filename, or \"q\" to quit: ");
             }
         } while (!isValidFile);
-
-        int[] scores = parse.getAbilityScores(data);
-
-        for (int i = 0; i < scores.length; i++) {
-            System.out.println(scores[i]);
-        };
     }
 
 }
