@@ -95,7 +95,7 @@ public class FileParser {
             //if value is a primitive
             if(sVal.isJsonPrimitive()) {
                 //If key value pair match up with parameters, add the current obj to the list
-                if(s.equals(key) && sVal.getAsString().equals(val)) {
+                if(s.equals(key) && sVal.getAsString().equals(val) || s.equals(key) && val.equals("")) {
                     objects.add(obj);
                 }
             //If the key is another json object, search within the object for the key value pair
@@ -112,5 +112,15 @@ public class FileParser {
             }
         }
         return objects;
+    }
+
+    public void test(String json) {
+        JsonObject data = getData(json);
+        ArrayList<JsonObject> objs = getObjects(data, "name", "Hew");
+        for(JsonObject m : objs) {
+            for(String s : m.keySet()) {
+                System.out.println(s);
+            }
+        }
     }
 }
