@@ -30,6 +30,9 @@ public class Main {
                 System.out.println("Enter new filename, or \"q\" to quit: ");
             }
         } while (!isValidFile);
+
+        FileParser temp = FileParser.getInstance();
+        temp.test(data);
     }
 
 }
